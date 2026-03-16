@@ -1,4 +1,4 @@
-from flask import Flask, jsonify 
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -32,6 +32,22 @@ def category(name):
         return jsonify({"message": "Category not found"}), 404
     else:
         return jsonify({name: [item.item for item in items]})
+    
+@app.route("/category", methods=["POST"])
+def add_category():
+    data = request.get_json()
+
+    if not data or "category" not in data or "item" not in data:
+        return jsonify({"message": "Invalid request, 'category' and 'item' are required."}, 400)
+    
+    category = data["category"]
+    item = data["item"]
+
+    new_item = ArchiveItem(category=category, item=item)
+    db.session.add(new_item)
+    db.session.commit()
+
+    return jsonify({"message": f'Item added succesfully- Category: {category}, Item: {item}'}, 201)
 
 if __name__ == "__main__":
     with app.app_context():
