@@ -49,6 +49,25 @@ def add_category():
 
     return jsonify({"message": f'Item added succesfully- Category: {category}, Item: {item}'}, 201)
 
+@app.route("/item/<int:item_id>", methods=["PUT"])
+def update_item(item_id):
+    data = request.get_json()
+    item = ArchiveItem.query.get(item_id)
+
+    if not item:
+        return jsonify({"message": "Item not found"}), 404
+    
+    if "item" in data:
+        item.item = data["item"]
+    if "category" in data:
+        item.category = data["category"]
+
+    db.session.commit()
+
+    return jsonify({"message": "Item updated successfully", "item": {"id": item.id, "category": item.category, "item": item.item}})
+    
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
