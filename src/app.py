@@ -66,7 +66,17 @@ def update_item(item_id):
 
     return jsonify({"message": "Item updated successfully", "item": {"id": item.id, "category": item.category, "item": item.item}})
     
+@app.route("/item/<int:item_id>", methods=["DELETE"])
+def delete_item(item_id):
+    item = ArchiveItem.query.get(item_id)
 
+    if not item:
+        return jsonify({"message": "Item not found"}), 404
+    
+    db.session.delete(item)
+    db.session.commit()
+
+    return jsonify({"message": "Item deleted successfully"})
 
 if __name__ == "__main__":
     with app.app_context():
