@@ -22,7 +22,7 @@ def me():
     for item in items:
         if item.category not in result:
             result[item.category] = []
-        result[item.category].append(item.item)
+        result[item.category].append({"id": item.id, "item": item.item})
     return jsonify(result)
 
 @app.route("/category/<string:name>")
@@ -31,7 +31,8 @@ def category(name):
     if not items:
         return jsonify({"message": "Category not found"}), 404
     else:
-        return jsonify({name: [item.item for item in items]})
+        item_list = [{"id": item.id, "item": item.item} for item in items]
+        return jsonify({name: item_list})
     
 @app.route("/category", methods=["POST"])
 def add_category():

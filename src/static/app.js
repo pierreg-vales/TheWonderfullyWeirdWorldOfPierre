@@ -10,12 +10,12 @@ async function loadArchive(){
         categoryDiv.className = "category";
         categoryDiv.innerHTML = `<h3>${category}</h3>`;
         
-        data[category].forEach(item => {
+        data[category].forEach(itemObj => {
             const itemDiv = document.createElement("div");
             itemDiv.className = "item";
             itemDiv.innerHTML = `
-                <span>${item}</span>
-                <button onclick="deleteItem(${getItemId(category, item)})">Delete</button>
+                <span>${itemObj.item}</span>
+                <button onclick="deleteItem(${itemObj.id})">Delete</button>
             `;
             categoryDiv.appendChild(itemDiv);
         });
@@ -55,11 +55,6 @@ async function deleteItem(id){
     if (response.ok){
         loadArchive();
     }
-}
-
-function getItemId(category, item) {
-    // Placeholder — we'll update this
-    return 1;
 }
 
 
