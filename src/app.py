@@ -41,8 +41,8 @@ def add_category():
     if not data or "category" not in data or "item" not in data:
         return jsonify({"message": "Invalid request, 'category' and 'item' are required."}, 400)
     
-    category = data["category"]
-    item = data["item"]
+    category = data["category"].strip()
+    item = data["item"].strip()
 
     new_item = ArchiveItem(category=category, item=item)
     db.session.add(new_item)

@@ -25,8 +25,11 @@ async function loadArchive(){
 }
 
 async function addItem(){
-    const category = document.getElementById('category').value;
-    const item = document.getElementById('item').value;
+    const category_input = document.getElementById('category').value;
+    const item_input = document.getElementById('item').value;
+
+    const category = category_input.trim();
+    const item = item_input.trim();
 
     if (!category || !item) {
         alert("Please fill in both fields.");
