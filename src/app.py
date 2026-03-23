@@ -12,6 +12,9 @@ class ArchiveItem(db.Model):
     category = db.Column(db.String(50), nullable=False)
     item = db.Column(db.String(200), nullable=False)
 
+with app.app_context():
+    db.create_all()
+
 @app.route("/")
 def home():
     return send_from_directory("static", "index.html")
@@ -84,3 +87,4 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=False)
+
