@@ -4,7 +4,7 @@ import os
 
 
 app = Flask (__name__) 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.dirname(__file__), 'instance', 'archive.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///archive.db')
 db = SQLAlchemy(app)
 
 class ArchiveItem(db.Model):
