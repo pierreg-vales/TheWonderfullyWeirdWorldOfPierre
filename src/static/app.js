@@ -60,5 +60,10 @@ async function deleteItem(id){
     }
 }
 
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        addItem();
+    }
+});
 
 loadArchive();
