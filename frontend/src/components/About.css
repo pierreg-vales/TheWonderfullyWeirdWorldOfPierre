@@ -1,0 +1,19 @@
+.about {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.about h2 {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.about p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #444;
+}
