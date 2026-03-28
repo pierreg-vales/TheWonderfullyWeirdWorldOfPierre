@@ -1,0 +1,30 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  max-width: 500px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.explorer-hint {
+  font-size: 0.9rem;
+  color: #aaa;
+  letter-spacing: 1px;
+}
